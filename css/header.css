@@ -1,0 +1,28 @@
+.tab-line{
+  color: #039be5;
+  border-bottom: 2px solid #039be5;
+  z-index: 100;
+}
+
+.hover{
+  width: 50%;
+  float: left;
+  margin-left: 0%;
+}
+.active{
+  color:#039be5;
+}
+
+#header{
+    text-align: center;
+    background-color: #fff;
+    olor: #fff;
+    width: 100%;
+}
+#header h1{
+    font-size: 20px; h
+    eight: 44px;
+    line-height: 44px;
+    margin: 0em;
+    color: #fff;
+}
