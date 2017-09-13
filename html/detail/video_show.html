@@ -16,30 +16,41 @@
 <body>
 
   <div class="covervid-wrapper">
-
-  			<video class="covervid-video" autoplay loop>
-  				<source src="http://v1-tt.ixigua.com/e1755db1b3d42e05f3dcd531563e7416/59b7a39f/video/m/2207c48848f8bbb4beba0bc8fb97e0baa15115135dc000015a760488899/" type="video/mp4">
-  			</video>
+        <span class="back"><img src="../../image/back.png"></span>
+  			<video class="covervid-video" poster="" autoplay loop></video>
   			<div class="fd">
-
   			jQuery <span style="font-family:'微软雅黑'; font-weight:bold;">插件库</span>
-
   			</div>
-
   		</div>
-
-
 
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/jquery.js"></script>
 <script type="text/javascript" src="../../script/covervid.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/request.js"></script>
+
+
 
 
 <script type="text/javascript">
-    apiready = function(){
 
+    var id;
+    apiready = function(){
+      var pageParam = api.pageParam;
+      id = pageParam.id;
+
+      Init();
     }
+
+    function Init(){
+        get_video_detail(id,function(data){
+          $('.covervid-video').attr('poster',data.thumbnail);
+          $('.covervid-video').html("<source id='video' src='"+data.video_url+"' type='video/mp4'>");
+        });
+    }
+
+
 $('.covervid-video').coverVid(1024, 1024);
 </script>
 </html>

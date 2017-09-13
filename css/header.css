@@ -1,6 +1,6 @@
 .tab-line{
-  color: #039be5;
-  border-bottom: 2px solid #039be5;
+  color: #673ab7;
+  border-bottom: 2px solid #673ab7;
   z-index: 100;
 }
 
@@ -10,19 +10,26 @@
   margin-left: 0%;
 }
 .active{
-  color:#039be5;
+  color:#673ab7 !important;
 }
 
 #header{
     text-align: center;
-    background-color: #fff;
-    olor: #fff;
+    background-color: #333;
+    color: #fff;
     width: 100%;
 }
 #header h1{
-    font-size: 20px; h
-    eight: 44px;
+    font-size: 20px;
+    height: 44px;
     line-height: 44px;
     margin: 0em;
     color: #fff;
+}
+
+#tab{
+  background-color: rgba(51,51,51,1.0);
+}
+#tab .aui-tab-item{
+  color:#fff;
 }

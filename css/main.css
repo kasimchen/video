@@ -1,5 +1,7 @@
 html,body{
     height: 100%;
+    background: transparent;
+
 }
 #wrap{
     height: 100%;

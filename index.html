@@ -39,14 +39,16 @@
         //适配iOS 7+，Android 4.4+状态栏
         $api.fixStatusBar(header);
 
-        api.setStatusBarStyle({style : 'light',color : '#ffffff'});
+        //api.setStatusBarStyle({style : 'light',color : '#ffffff'});
+
+
 
         var headerPos = $api.offset(header);
         var main = $api.byId('main');
         var mainPos = $api.offset(main);
         api.openFrame({
             name: 'main',
-            url: 'html/main.html',
+            url: 'html/video_list.html',
             bounces: true,
             rect: {
                 x: 0,
@@ -79,13 +81,7 @@
 
     function opendDetail(){
 
-      api.openWin({
-          name: 'video_show',
-          url: 'html/detail/video_show.html',
-          pageParam: {
-              name: 'test'
-          }
-      });
+  
 
 
     }

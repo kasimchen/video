@@ -1,0 +1,13 @@
+{{if list}}
+    {{each list as value i}}
+
+    <li tapmode onclick="toVideoDetail({{value.id}})">
+      <img src="{{value.thumbnail}}"/>
+      <div class="v-bottom">
+        <p class="v-title">{{value.title}}</p>
+        <p class="v-play"><i class="aui-iconfont aui-icon-video"></i><span>{{value.view_count}}</span></p>
+      </div>
+    </li>
+    {{/each}}
+
+{{/if}}
