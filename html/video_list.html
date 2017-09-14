@@ -52,7 +52,7 @@ apiready = function(){
   //$('#tpl-user').html();
 }
 
-//load();
+load();
 
 function Init(){
   api.setRefreshHeaderInfo({
@@ -71,7 +71,7 @@ function Init(){
 }
 
 function load(){
-  get_video_list(last_time,function(data){
+  get_video_list(Window.last_time,function(data){
     var html = template_video_list(data);
     $('ul.image-list').html(html);
     Window.last_time = data.last_time;
