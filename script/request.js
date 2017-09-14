@@ -19,7 +19,6 @@ function get_video_list(last_time,callback){
 
 function get_video_detail(id,callback){
 
-  console.log(api_host+"/api/video/show/"+id);
   $.ajax({
         type : "get",
         url : api_host+"/api/video/show/"+id,

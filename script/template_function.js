@@ -7,6 +7,16 @@ function template_video_list(data){
 
 }
 
+function template_video_detail(data){
+
+    var html = readFile("../components/video_detail.html");
+    console.log(html);
+    return false;
+    var render = template.compile(html);
+    return  render(data);
+
+}
+
 
 function readFile(path){
 
@@ -15,11 +25,10 @@ function readFile(path){
         type : "get",
         url : path,
         async : false,
-        success : function(item){
+        success : function(item)
           html = item;
         }
       });
-
    return html;
 
 

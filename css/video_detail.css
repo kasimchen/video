@@ -26,24 +26,73 @@ body {
 
 .fd {
     position: absolute;
-    top: 48%;
+    bottom: 0;
     color: #FFFFFF;
-    font-size: 40px;
-    width: 100%;
-    text-align: center;
+    font-size: 18px;
     font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 20px;
+    bottom: 80px;
+    width: 100%;
 }
 
-.fd p {
-    font-size: 14px;
+.title {
+    float: left;
 }
-.back{
+
+.praise {
+    float: right;
+    margin-right: 41px;
+    position: relative;
+    bottom: 68px;
+}
+
+.praise .heart {
+    width: 32px;
+    height: 32px;
+    background-image: url('../image/heart.png');
+    background-size: 32px 32px;
+    position: absolute;
+    top: 0px;
+}
+
+.praise .heart.active {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  background-image: url('../image/heart_active.png');
+  background-size: 32px 32px;
   position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 7px;
+  top: 0px;
+}
+
+.praise span.heart_count {
+    top: 35px;
+    position: absolute;
+}
+
+#view_count {
+    font-size: 14px;
+}
+
+#view_count i {
+    font-style: normal;
+}
+
+.back {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 7px;
+    z-index: 999;
+}
+
+.title span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 260px;
+    height: 28px;
 }
