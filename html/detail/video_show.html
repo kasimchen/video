@@ -19,7 +19,7 @@
 
     <div class="covervid-wrapper">
         <span tapmode onclick="back()" class="back"><img src="../../image/back.png"></span>
-
+        <div id="contains"></div>
 <!--
         <video class="covervid-video" poster="" autoplay loop></video>
         <div class="fd">
@@ -61,12 +61,8 @@
 
     function Init() {
         get_video_detail(id, function(data) {
-
           var html = template_video_detail(data);
-          console.log(html);
-
-            //$('.covervid-video').attr('poster',data.thumbnail);
-            //$('.covervid-video').html("<source id='video' src='"+data.video_url+"' type='video/mp4'>");
+          $('#contains').html(html);
         });
     }
 
@@ -79,16 +75,16 @@
       });
     }
 
-    $('.praise').delegate('.heart:not(.active)', 'click', function() {
+    $('#contains').delegate('.heart:not(.active)', 'click', function() {
 
         $(this).addClass('active');
         var count = parseInt($(".heart_count").html()) + 1;
-        $(".heart_count").html(count).css('color', '#d81e06');
+        $(".heart_count").html(count);
         $(this).addClass('animated swing');
 
     })
 
-    $('.praise').delegate('.heart.active', 'click', function() {
+    $('#contains').delegate('.heart.active', 'click', function() {
         var count = parseInt($(".heart_count").html()) - 1;
         $(".heart_count").html(count);
         $(this).removeClass('active');

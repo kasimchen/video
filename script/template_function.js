@@ -1,35 +1,40 @@
+function template_video_list(data) {
 
-function template_video_list(data){
-
-    var html = readFile("../components/video_list.html?v=1.1");
+    if (localStorage.video_list_temp) {
+        var html = localStorage.video_list_temp;
+    } else {
+        var html = readFile("../components/video_list.html?v=" + Math.random());
+    }
     var render = template.compile(html);
-    return  render(data);
+    return render(data);
 
 }
 
-function template_video_detail(data){
+function template_video_detail(data) {
 
-    var html = readFile("../components/video_detail.html");
-    console.log(html);
-    return false;
+    if (localStorage.video_detail_temp) {
+        var html = localStorage.video_detail_temp;
+    } else {
+        var html = readFile("../../components/video_detail.html?v=" + Math.random());
+    }
     var render = template.compile(html);
-    return  render(data);
+    return render(data);
 
 }
 
 
-function readFile(path){
+function readFile(path) {
 
-  var html;
-  $.ajax({
-        type : "get",
-        url : path,
-        async : false,
-        success : function(item)
-          html = item;
+    var html;
+    $.ajax({
+        type: "get",
+        url: path,
+        async: false,
+        success: function(item) {
+            html = item;
         }
-      });
-   return html;
+    });
+    return html;
 
 
 }
