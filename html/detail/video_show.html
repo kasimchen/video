@@ -52,14 +52,19 @@
 
 <script type="text/javascript">
     var id;
+    var td;
     apiready = function() {
         var pageParam = api.pageParam;
         id = pageParam.id;
-
         Init();
+        addEvent();
     }
 
     function Init() {
+
+      td = api.require('talkingData');
+      td.onPageStart({pageName:'视频详情页',Id:id});
+
         get_video_detail(id, function(data) {
           var html = template_video_detail(data);
           $('#contains').html(html);
@@ -70,9 +75,21 @@
       api.historyBack({
       }, function(ret, err) {
           if (!ret.status) {
+              td.onPageEnd({pageName:'视频详情页',Id:id});
               api.closeWin();
           }
       });
+    }
+
+
+    function addEvent(){
+      //如监听网络连接事件
+      api.addEventListener({
+          name: 'keyback'
+      }, function(ret, err) {
+        td.onPageEnd({pageName:'视频详情页',Id:id});
+      });
+
     }
 
     $('#contains').delegate('.heart:not(.active)', 'click', function() {

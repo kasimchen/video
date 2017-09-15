@@ -28,7 +28,7 @@
 <body>
 
     <div style="background-color:#333;height:25px;"></div>
-    <span class="back_static"></span>
+    <span class="back_static" tapmode onclick="back()"></span>
 
     <div id="main">
         <img src="http://src.mysada.com/sada/file/jpeg/59b797dfd066e.jpeg" />
@@ -49,17 +49,22 @@
 
 <script type="text/javascript">
     var id;
+    var td;
     apiready = function() {
         var pageParam = api.pageParam;
         id = pageParam.id;
         Init();
+        addEvent();
     }
 
     function Init() {
+
+      td = api.require('talkingData');
+      td.onPageStart({pageName:'图片详情页',Id:id});
+
         get_image_detail(id, function(data) {
 
             for (var i = 0; i < data.image.length; i++) {
-
                 api.imageCache({
                     url: data.image[i],
                     policy:'cache_only'
@@ -69,10 +74,33 @@
                 });
             }
 
-
             var html = template_image_detail(data);
             $('#main').html(html);
+
         });
+
+    }
+
+
+    function back(){
+      api.historyBack({
+      }, function(ret, err) {
+          if (!ret.status) {
+            td.onPageEnd({pageName:'图片详情页',Id:id});
+              api.closeWin();
+          }
+      });
+    }
+
+    function addEvent(){
+
+      //如监听网络连接事件
+      api.addEventListener({
+          name: 'keyback'
+      }, function(ret, err) {
+        td.onPageEnd({pageName:'图片详情页',Id:id});
+      });
+
     }
 </script>
 

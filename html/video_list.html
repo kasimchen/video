@@ -46,6 +46,8 @@
 <script>
 
  Window.last_time = 0;
+ Window.page = 0;
+ var td;
 
 apiready = function(){
 
@@ -54,25 +56,28 @@ apiready = function(){
 
   $("#float_btn").load("includes/float_btn.html");
 
-
-  //$('#tpl-user').html();
 }
 
 //load();
 
 function Init(){
-  api.setRefreshHeaderInfo({
-  loadingImg: 'widget://image/refresh.png',
-  bgColor: 'rgba(51,51,51,1.0)',
-  textColor: '#fff',
-  textDown: '下拉刷新...',
-  textUp: '松开刷新...'
-}, function(ret, err) {
-  //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
-  loadMore(Window.last_time);
-  api.refreshHeaderLoadDone();
 
-});
+        td = api.require('talkingData');
+        td.onEvent({eventId:'进入视频列表页面',parameters:{page:Window.page}});
+
+        api.setRefreshHeaderInfo({
+        loadingImg: 'widget://image/refresh.png',
+        bgColor: 'rgba(51,51,51,1.0)',
+        textColor: '#fff',
+        textDown: '下拉刷新...',
+        textUp: '松开刷新...'
+      }, function(ret, err) {
+        //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+        loadMore(Window.last_time);
+        api.refreshHeaderLoadDone();
+
+        td.onEvent({eventId:'视频下拉刷新',parameters:{page:Window.page}});
+      });
 
 }
 
@@ -80,19 +85,31 @@ function load(){
   get_video_list(Window.last_time,function(data){
     var html = template_video_list(data);
     $('ul.image-list').html(html);
+
     Window.last_time = data.last_time;
+    Window.page++;
+
   });
 }
 
 function loadMore(last_time){
   get_video_list(last_time,function(data){
     var html = template_video_list(data);
-    Window.last_time = data.last_time;
     $('ul.image-list').html(html);
+
+    Window.last_time = data.last_time;
+    Window.page++;
   });
 }
 
 function toVideoDetail(id){
+
+  td.onEvent({
+      eventId: '视频详情页点击',
+      parameters: {
+          Id: id,
+      }
+  });
 
   api.openWin({
       name: 'video_show',

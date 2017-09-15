@@ -38,16 +38,10 @@
         var header = $api.byId('header');
         //适配iOS 7+，Android 4.4+状态栏
         $api.fixStatusBar(header);
-
         //api.setStatusBarStyle({style : 'light',color : '#ffffff'});
-
-
-
         var headerPos = $api.offset(header);
         var main = $api.byId('main');
         var mainPos = $api.offset(main);
-
-
         api.openFrameGroup({
             name: 'main',
             rect: {
@@ -70,12 +64,16 @@
             console.log(index);
         });
 
-
-
-
+        Init();
     };
 
 
+    function Init(){
+
+      var td = api.require('talkingData');
+      td.getDeviceID(function(ret, err) {});
+
+    }
 
 
       $(".aui-tab-item").click(function(){
