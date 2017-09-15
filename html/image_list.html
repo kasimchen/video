@@ -7,10 +7,11 @@
     <title>Hello APP</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
-    <link rel="stylesheet" type="text/css" href="../res/font-awesome-4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
     <link rel="stylesheet" type="text/css" href="../css/video_list.css" />
     <link rel="stylesheet" type="text/css" href="../css/float_btn.css" />
+
+
 
 	<style>
 	</style>
@@ -18,13 +19,12 @@
 <body>
 
 
-
   <div id="main">
       <ul class="image-list">
         <li tapmode onclick="toVideoDetail(1)">
           <img src="http://src.mysada.com/sada/file/jpeg/59b797dfd066e.jpeg"/>
           <div class="v-bottom">
-            <p class="v-title">视频</p>
+            <p class="v-title">图片</p>
             <p class="v-play"><i class="aui-iconfont aui-icon-video"></i><span>30万</span></p>
           </div>
         </li>
@@ -51,14 +51,11 @@ apiready = function(){
 
   Init();
   var winWidth = api.winWidth;  // 比如： 960
+  $('#float_btn').load('includes/float_btn.html');
 
-  $("#float_btn").load("includes/float_btn.html");
-
-
-  //$('#tpl-user').html();
 }
 
-//load();
+load();
 
 function Init(){
   api.setRefreshHeaderInfo({
@@ -77,26 +74,26 @@ function Init(){
 }
 
 function load(){
-  get_video_list(Window.last_time,function(data){
-    var html = template_video_list(data);
+  get_image_list(Window.last_time,function(data){
+    var html = template_image_list(data);
     $('ul.image-list').html(html);
     Window.last_time = data.last_time;
   });
 }
 
 function loadMore(last_time){
-  get_video_list(last_time,function(data){
-    var html = template_video_list(data);
+  get_image_list(last_time,function(data){
+    var html = template_image_list(data);
     Window.last_time = data.last_time;
     $('ul.image-list').html(html);
   });
 }
 
-function toVideoDetail(id){
+function toImageDetail(id){
 
   api.openWin({
-      name: 'video_show',
-      url: 'detail/video_show.html',
+      name: 'image_show',
+      url: 'detail/image_show.html',
       pageParam: {
           id: id
       }

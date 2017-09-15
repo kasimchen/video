@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/header.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/video_list.css" />
+
+    <style>
+        img {
+            width: 100%;
+            display: -webkit-inline-box;
+        }
+
+        html,
+        body {
+            background-color: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div style="background-color:#333;height:25px;"></div>
+    <span class="back_static"></span>
+
+    <div id="main">
+        <img src="http://src.mysada.com/sada/file/jpeg/59b797dfd066e.jpeg" />
+        <img src="http://src.mysada.com/sada/file/jpeg/59b797dfd066e.jpeg" />
+        <img src="http://src.mysada.com/sada/file/jpeg/59b797dfd066e.jpeg" />
+        <img src="http://src.mysada.com/sada/file/jpeg/59b797dfd066e.jpeg" />
+
+    </div>
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/request.js"></script>
+<script type="text/javascript" src="../../script/template.js"></script>
+<script type="text/javascript" src="../../script/template_function.js"></script>
+
+
+<script type="text/javascript">
+    var id;
+    apiready = function() {
+        var pageParam = api.pageParam;
+        id = pageParam.id;
+        Init();
+    }
+
+    function Init() {
+        get_image_detail(id, function(data) {
+
+            for (var i = 0; i < data.image.length; i++) {
+
+                api.imageCache({
+                    url: data.image[i],
+                    policy:'cache_only'
+                }, function(ret, err) {
+                    data['image'][i] =  ret.url;
+                    console.log(data['image'][i]);
+                });
+            }
+
+
+            var html = template_image_detail(data);
+            $('#main').html(html);
+        });
+    }
+</script>
+
+</html>

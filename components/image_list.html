@@ -1,0 +1,13 @@
+{{if list}}
+    {{each list as value i}}
+
+    <li tapmode onclick="toImageDetail({{value.id}})">
+      <img src="{{value.image}}?x-oss-process=image/resize,m_fill,w_178,h_270,limit_0/auto-orient,1/quality,q_90"/>
+      <div class="v-bottom">
+        <p class="v-title">{{value.title}}</p>
+        <p class="v-play"><i class="aui-iconfont aui-icon-video"></i><span>{{value.view_count}}</span></p>
+      </div>
+    </li>
+    {{/each}}
+
+{{/if}}

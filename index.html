@@ -15,8 +15,8 @@
     <div id="wrap">
         <div id="header">
           <div class="aui-tab" id="tab">
-              <div class="aui-tab-item active">影视</div>
-              <div class="aui-tab-item">图片</div>
+              <div class="aui-tab-item active" data-fd="0">影视</div>
+              <div class="aui-tab-item" data-fd="1">图片</div>
           </div>
           <div class="tab-line hover" ></div>
       </div>
@@ -46,17 +46,31 @@
         var headerPos = $api.offset(header);
         var main = $api.byId('main');
         var mainPos = $api.offset(main);
-        api.openFrame({
+
+
+        api.openFrameGroup({
             name: 'main',
-            url: 'html/video_list.html',
-            bounces: true,
             rect: {
                 x: 0,
                 y: headerPos.h,
                 w: 'auto',
                 h: mainPos.h
-            }
+            },
+            frames: [{
+                name: 'video_list',
+                url: 'html/video_list.html',
+                bounces: true,
+            }, {
+              name: 'image_list',
+              url: 'html/image_list.html',
+              bounces: true,
+            }]
+        }, function(ret, err) {
+            var index = ret.index;
+            console.log(index);
         });
+
+
 
 
     };
@@ -74,27 +88,15 @@
         $(this).prev().removeClass('active');
         $(this).next().removeClass('active');
 
-        opendDetail();
+        var frameId = $(this).data('fd');
+        api.setFrameGroupIndex({
+          name: 'main',
+          index: frameId
+        });
 
       })
 
 
-    function opendDetail(){
-
-  
-
-
-    }
-
-
-    function tabChange(){
-
-
-
-
-
-
-    }
 
 </script>
 </html>

@@ -23,6 +23,30 @@ function template_video_detail(data) {
 }
 
 
+function template_image_list(data) {
+
+    if (localStorage.image_list_temp) {
+        var html = localStorage.image_list_temp;
+    } else {
+        var html = readFile("../components/image_list.html?v=" + Math.random());
+    }
+    var render = template.compile(html);
+    return render(data);
+}
+
+
+function template_image_detail(data) {
+
+    if (localStorage.image_detail_temp) {
+        var html = localStorage.image_detail_temp;
+    } else {
+        var html = readFile("../../components/image_detail.html?v=" + Math.random());
+    }
+  
+    var render = template.compile(html);
+    return render(data);
+}
+
 function readFile(path) {
 
     var html;

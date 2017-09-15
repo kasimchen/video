@@ -1,0 +1,31 @@
+
+<section class="model-0">
+    <div class="float-btn-group">
+        <button class="btn-float btn-triger pink"><i class="icon-bars"></i></button>
+        <div class="btn-list">
+            <!--
+          <a href="#" class="btn-float yellow"><i class="fa fa-search"></i></a>
+          <a href="#" class="btn-float blue"><i class="fa fa-cloud-download"> </i></a>
+          <a href="#" class="btn-float green"><i class="fa fa-paperclip">   </i></a>
+        -->
+            <a href="#" class="btn-float purple"><i class="fa fa-qq"> </i></a>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('.btn-triger').click(function() {
+        $(this).closest('.float-btn-group').toggleClass('open');
+    });
+    $('.fa.fa-qq').click(function() {
+
+      api.alert({
+        title: '',
+        msg: '如果有任何问题请加qq群：12345678',
+      }, function(ret, err) {
+          $('.btn-triger').closest('.float-btn-group').toggleClass('open');
+      });
+
+
+    })
+</script>
